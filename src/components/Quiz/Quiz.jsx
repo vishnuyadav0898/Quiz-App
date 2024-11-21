@@ -13,12 +13,15 @@ let Quiz = () => {
   const [score, setScore] = useState(0);
   const [result, setResult] = useState(false);
   const [selected, setSelected] = useState(null); 
-  const [data, setData] = useState([]); 
+  const [data, setData] = useState([]);
+ 
 
   const URL = 'https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple';
 
   useEffect(() => {
     const fetchQuizData = async () => {
+   
+      
       try {
         const response = await fetch(URL);
         if (response.status===429) {
@@ -46,10 +49,13 @@ let Quiz = () => {
         console.error('Error fetching or processing quiz data:', error);
       }
     };
-      fetchQuizData(); 
+  
+    fetchQuizData();
+     
   }, []); 
 
   useEffect(() => {
+    
     if (data.length > 0) {
       setQuestion(data[index]);  
     }
